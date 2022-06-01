@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <h1>EMPLOYER HOME {{request.user}}</h1>
+
+        <form action="" method="post">
+            {%csrf_token%}
+
+            <input type="password" name="pwd" placeholder="change password for {{request.user}}">
+            <input type="submit" value="verify">
+
+        </form>
+
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+
+
+{%endblock%}

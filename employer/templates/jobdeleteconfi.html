@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="col-3"></div>
+<div class="col-6">
+    <form action="" method="post" >
+        ARE YOU SURE WANT TO DELETE ?
+        {%csrf_token%}
+        <input type="SUBMIT">
+        <div class="col-3"></div>
+    </form>
+</div>
+
+{%endblock%}
