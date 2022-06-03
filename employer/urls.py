@@ -13,6 +13,7 @@ urlpatterns = [
     path('user/account/sighnin',views.SighnInView.as_view(),name='sighnin'),
     path('user/account/sighnout',views.sighnout_view,name='sighnout'),
     path('user/change/password',views.ChangePasswordView.as_view(),name='passchange'),
-    path('user/reset/password',views.PasswordResetView.as_view(),name='password-reset')
+    path('user/reset/password',views.PasswordResetView.as_view(),name='password-reset'),
+    path('profile/add',views.CompanyProfileView.as_view(),name='emp-addprofile')
 
    ]

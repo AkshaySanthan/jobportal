@@ -1,5 +1,5 @@
 from django import forms
-from employer.models import Jobs
+from employer.models import Jobs,CompanyProfile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -26,3 +26,9 @@ class SighnupForm(UserCreationForm):
 class LoginForm(forms.Form):
     username=forms.CharField()
     password=forms.CharField(widget=forms.PasswordInput())
+
+
+class CompanyProfileForm(forms.ModelForm):
+    class Meta:
+        model=CompanyProfile
+        exclude=("user",)
