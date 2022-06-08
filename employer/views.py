@@ -4,8 +4,9 @@ from django.views.generic import TemplateView,View,ListView,CreateView,DetailVie
 from employer.forms import JobForm,CompanyProfileForm
 from employer.models import Jobs,CompanyProfile
 from employer.forms import SighnupForm,LoginForm
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from employer.models import User
 
 # Create your views here.
 
@@ -18,6 +19,9 @@ class AddJobView(CreateView):
     form_class = JobForm
     template_name = "emp-addjob.html"
     success_url = reverse_lazy('all-jobs')
+    def form_valid(self, form):
+        form.instance.company=self.request.user
+        return super().form_valid(form)
     # def get(self,request):
     #     form=JobForm()
     #     return render(request,"emp-addjob.html",{"form":form})
@@ -45,12 +49,13 @@ class AddJobView(CreateView):
 
 
 class ListJobView(ListView):
-    # def get(self,request):
-    #     qs=Jobs.objects.all()
-    #     return render(request,"emp-listjob.html",{"jobs":qs})
     model=Jobs
     context_object_name = "jobs"
     template_name = "emp-listjob.html"
+    def get_queryset(self):
+        return Jobs.objects.filter(company=self.request.user)
+        # return Jobs.objects.filter(company=self.request.user)
+
 
 class JobDetailView(DetailView):
     model = Jobs
@@ -96,7 +101,7 @@ class SighnupView(CreateView):
     model=User
     form_class = SighnupForm
     template_name = "usersighnup.html"
-    success_url = reverse_lazy("all-jobs")
+    success_url = reverse_lazy('sighnin')
 
 
 class SighnInView(FormView):
@@ -112,7 +117,11 @@ class SighnInView(FormView):
             user=authenticate(request,username=uname,password=pwd)
             if user:
                 login(request,user)
-                return redirect("all-jobs")
+                if request.user.role=="employer":
+                    return redirect("all-jobs")
+                elif request.user.role=="candidate":
+                    return redirect("candi-home")
+
             else:
                 return render(request,"login.html",{"form":form})
 
@@ -164,3 +173,13 @@ class CompanyProfileView(CreateView):
         return super().form_valid(form)
 
 
+class EmpViewProfileView(TemplateView):
+    template_name = "emp-viewprofile.html"
+
+
+class EmpEditProfileView(UpdateView):
+    model=CompanyProfile
+    form_class = CompanyProfileForm
+    template_name = "emp-editprofile.html"
+    success_url = reverse_lazy('emp-profileview')
+    pk_url_kwarg = "id"
