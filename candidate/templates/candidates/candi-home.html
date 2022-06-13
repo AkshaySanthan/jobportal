@@ -9,6 +9,38 @@
     </div>
     <div class="col-4"></div>
 </div>
+<div class="card bg-secondary" style="width: 18rem;">
+  <img src="{{request.user.candidate.profile_pic.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Manageprofile</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      {%if request.user.candidate%}
+      <a href="{%url 'can-pdetail' %}" class="btn btn-success">View Profile</a>
+      {%else%}
+      <a href="">Add Profile</a>
+      {%endif%}
+  </div>
+</div>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        {%if messages%}
+                {%for message in messages%}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+                        {%endif%}
+
+             {%endfor%}
 
 
+
+        {%endif%}
+    </div>
+    <div class="col-4"></div>
+</div>
 {%endblock%}

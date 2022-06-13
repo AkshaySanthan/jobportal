@@ -20,6 +20,9 @@ class JobForm(forms.ModelForm):
         }
 
 
+
+
+
 class SighnupForm(UserCreationForm):
 
     class Meta:

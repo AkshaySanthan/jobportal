@@ -1,0 +1,35 @@
+{%extends 'candidates/base.html'%}
+{%block body_block%}
+<div class="card mt-5" style="width: 18rem;">
+  <img src="" class="card-img-top " alt="">
+  <div class="card-header">
+     <strong> {{job.job_title}}</strong>
+      <hr>
+      <div class="card-body">
+         <p class="card-text"> <strong>COMPANY</strong>
+             {{job.company_name}}</p>
+
+          <p class="card-text">
+            Location:  {{job.location}}
+          </p>
+          <p class="card-text">
+             Salary: {{job.salary}}
+          </p>
+          <p>
+              Experience:{{job.experience}}
+          </p>
+
+      </div>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a href="{%url 'apply-now' job.id %}" class="btn btn-success">Apply Now</a>
+    </div>
+    <div class="col-4"></div>
+</div>
+  </div>
+
+</div>
+<!--</div>-->
+<div class="col-2"></div>
+{%endblock%}

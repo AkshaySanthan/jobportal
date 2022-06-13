@@ -12,3 +12,24 @@ class CandidateProfileForm(forms.ModelForm):
             "skills": forms.TextInput(attrs={"class": "form-control bg-success rounded-pill"}),
             "experience":forms.NumberInput(attrs={"class":"form-control bg-primary"})
         }
+
+
+class CandidateProfileEditForm(forms.ModelForm):
+    first_name=forms.CharField(max_length=120)
+    last_name=forms.CharField(max_length=120)
+    phone=forms.CharField()
+    email=forms.EmailField()
+    class Meta:
+        model=CandidateProfile
+        fields=["first_name",
+                "last_name",
+                "phone",
+                "email",
+                "profile_pic",
+                "resume",
+                "qualification",
+                "experience",
+                "skills"
+
+
+             ]

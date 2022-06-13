@@ -25,6 +25,7 @@ class Jobs(models.Model):
     created_date=models.DateField(auto_now_add=True)
     last_date=models.DateField(null=True)
     active_status=models.BooleanField(default=True)
+    job_description=models.TextField(null=True)
 
 
 
@@ -40,3 +41,21 @@ class CompanyProfile(models.Model):
     location=models.CharField(max_length=120)
     services=models.CharField(max_length=150)
     logo=models.ImageField(upload_to="companyprofile",null=True)
+
+
+class Applications(models.Model):
+    applicant=models.ForeignKey(User,on_delete=models.CASCADE,related_name="applicant")
+    job=models.ForeignKey(Jobs,on_delete=models.CASCADE)
+    options=(
+        ("applied","applied"),
+        ("accepted","accepted"),
+        ("rejected0","rejected"),
+        ("pending","pending")
+    )
+    status=models.CharField(max_length=120,choices=options,default="applied")
+    date=models.DateTimeField(auto_now_add=True)
+
+
+
+
+
