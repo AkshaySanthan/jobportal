@@ -8,5 +8,6 @@ urlpatterns=[
     path("update/profile",views.CandidateProfieEditView.as_view(),name='can-update'),
     path("list/jobs",views.CandidateJobListView.as_view(),name='list-job'),
     path("job/detail<int:id>",views.CandidateJobDetailView.as_view(),name='can-detailjob'),
-    path("job/apply-now/<int:id>",views.apply_now,name='apply-now')
+    path("job/apply-now/<int:id>",views.apply_now,name='apply-now'),
+    path("can/joblist",views.ApplicationListView.as_view(),name='can-applist')
 ]

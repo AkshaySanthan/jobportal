@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block body_block%}
+
+<div class="card mt-5 ms-5 align-centre" style="width: 18rem;">
+  <img src="{{application.applicant.candidate.profile_pic.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{application.applicant.username}}</h5>
+<!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{application.applicant.candidate.qualification}}</li>
+    <li class="list-group-item">{{application.applicant.candidate.skills}}</li>
+    <li class="list-group-item">{{application.applicant.candidate.experience}}</li>
+    <a href="{{application.applicant.candidate.resume.url}}" class="btn btn-primary">Download CV</a>
+  </ul>
+  <div class="card-body ms-5 ">
+    <a href="#" class="card-link btn btn-success" >Accept</a>
+    <a href="#" class="card-link btn btn-danger">Reject</a>
+  </div>
+</div>
+
+{%endblock%}

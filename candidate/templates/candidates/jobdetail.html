@@ -21,10 +21,15 @@
 
       </div>
 <div class="row">
-    <div class="col-4"></div>
+    <div class="col-4">
+        {%if is_applied%}
+        <a href="" class="btn btn-secondary">Applied</a>
+    </div>
+    {%else%}
     <div class="col-4">
         <a href="{%url 'apply-now' job.id %}" class="btn btn-success">Apply Now</a>
     </div>
+    {%endif%}
     <div class="col-4"></div>
 </div>
   </div>

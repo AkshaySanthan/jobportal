@@ -42,7 +42,7 @@ class CandidateProfieEditView(FormView):
         return render(request,self.template_name,{"form":form})
 
     def post(self, request, *args, **kwargs):
-        profiles=CandidateProfile.objects.get(User=request.user)
+        profiles=CandidateProfile.objects.get(user=request.user)
         form=self.form_class(instance=profiles,data=request.POST,files=request.FILES)
         if form.is_valid():
             first_name=form.cleaned_data.pop("first_name")
@@ -74,6 +74,13 @@ class CandidateJobDetailView(DetailView):
     template_name = "candidates/jobdetail.html"
     pk_url_kwarg = "id"
 
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        is_applid=Applications.objects.filter(applicant=self.request.user,job=self.object)
+
+        context["is_applied"]=is_applid
+        return context
+
 
 def apply_now(request,*args,**kwargs):
     user=request.user
@@ -85,4 +92,12 @@ def apply_now(request,*args,**kwargs):
     messages.success(request,"your application submitted successfully")
     return redirect("candi-home")
 
+
+class ApplicationListView(ListView):
+    model = Applications
+    template_name = "candidates/candi-applications.html"
+    context_object_name = "applications"
+
+    def get_queryset(self):
+        return Applications.objects.filter(applicant=self.request.user)
 

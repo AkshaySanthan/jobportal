@@ -33,3 +33,7 @@ class CandidateProfileEditForm(forms.ModelForm):
 
 
              ]
+        widgets={
+            "first_name":forms.TextInput(attrs={"class":"form-control"})
+        }
+

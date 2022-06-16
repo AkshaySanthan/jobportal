@@ -1,17 +1,134 @@
-{%extends 'candidates/base.html'%}
-{%block body_block%}
+<!doctype html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="{%static 'css/update.css'%}">
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+    <section class="h-100 h-custom gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <h3 class="fw-normal mb-5" style="color: #4835d4;">General Infomation</h3>
 
-<div class="row">
-    <div class="col-4"></div>
-    <div class="col-4">
-        <form action="" method="post" enctype="multipart/form-data">
-            {%csrf_token%}
-            {{form.as_p}}
-            <input type="submit" value="Update">
-        </form>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        <label class="form-label">First name</label>
+                        {%csrf_token%}
+                        {{form.first_name}}
+                      </div>
+
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        <label class="form-label" >Last name</label>
+                        {{form.last_name}}
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline">
+                      <label class="form-label">Profile</label>
+                      {{form.profile_pic}}
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
+
+                      <div class="form-outline">
+                        <label class="form-label">Resume</label>
+                        {{form.resume}}
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-lg-6 bg-indigo text-white">
+                <div class="p-5">
+                  <h3 class="fw-normal mb-5">Other Details</h3>
+
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline form-white">
+                      <label class="form-label">Ph No</label>
+                      {{form.phone}}
+                    </div>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline form-white">
+                      <label class="form-label">Email</label>
+                      {{form.email}}
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-5 mb-4 pb-2">
+
+                      <div class="form-outline form-white">
+                        <label class="form-label" >Qualifications</label>
+                        {{form.qualification}}
+                      </div>
+
+                    </div>
+                    <div class="col-md-10 mb-4 pb-2">
+
+                      <div class="form-outline form-white">
+                        <label class="form-label" >Skills</label>
+                        {{form.skills}}
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline form-white">
+                      <label class="form-label" >Experience</label>
+                      {{form.experience}}
+                    </div>
+                  </div>
+
+                  <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                    <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
+                    <label class="form-check-label text-white" for="form2Example3">
+                      I do accept the <a href="#!" class="text-white"><u>Terms and Conditions</u></a> of your
+                      site.
+                    </label>
+                  </div>
+                  <input type="submit" class="btn btn-danger" value="Update">
+
+<!--                  <button type="button" class="btn btn-light btn-lg"-->
+<!--                    data-mdb-ripple-color="dark">Register</button>-->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-4"></div>
-</div>
-
-
-{%endblock%}
+  </div>
+</section>
+</form>
+</body>
+</html>

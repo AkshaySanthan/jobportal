@@ -50,10 +50,14 @@ class Applications(models.Model):
         ("applied","applied"),
         ("accepted","accepted"),
         ("rejected0","rejected"),
-        ("pending","pending")
+        ("pending","pending"),
+        ("cancelled","cancelled")
     )
     status=models.CharField(max_length=120,choices=options,default="applied")
     date=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together= ("applicant","job")
 
 
 

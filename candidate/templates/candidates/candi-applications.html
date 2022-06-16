@@ -1,0 +1,43 @@
+{%extends 'candidates/base.html'%}
+{%block body_block%}
+
+{%for application in applications%}
+
+<div class="row">
+    <div class="col-4 btn btn-outerline mt-2">
+        <div>
+            JOBTITLE:{{application.job.job_title}}
+        </div>
+
+        <div>
+            COMPANY NAME :{{application.job.company}}
+        </div>
+
+        <div>
+            LOCATION :{{application.job.location}}
+        </div>
+
+        <div>
+            SALARY:{{application.job.salary}}
+        </div>
+
+        <div>
+            EXPERIENCE:{{application.job.experience}}
+        </div>
+
+    </div>
+    <div class="col-4">
+        {{application.status}}
+        {{application.date}}
+    </div>
+    <div class="col-4">
+        <a href="" class="btn btn-danger">CancelApplication</a>
+    </div>
+
+</div>
+
+
+{%endfor%}
+
+
+{%endblock%}

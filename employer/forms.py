@@ -29,6 +29,16 @@ class SighnupForm(UserCreationForm):
         # password1=forms.CharField(widget=forms.PasswordInput(attrs='class':'col-')
         model=User
         fields=["username","first_name","last_name","email","password1","password2","role","phone"]
+        widgets={
+            "username":forms.TextInput(attrs={"class":"form-control"}),
+            "first_name": forms.TextInput(attrs={"class": "form-control"}),
+            "last_name": forms.TextInput(attrs={"class": "form-control"}),
+            "email": forms.EmailInput(attrs={"class": "form-control rounded-pill"}),
+            "password1": forms.PasswordInput(attrs={"class": "form-control "}),
+            "password2": forms.TextInput(attrs={"class": "form-control"}),
+            "phone": forms.NumberInput(attrs={"class": "form-control rounded-pill"}),
+
+        }
 
 
 

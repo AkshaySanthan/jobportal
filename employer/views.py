@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,View,ListView,CreateView,DetailView,UpdateView,DeleteView,FormView
 from employer.forms import JobForm,CompanyProfileForm
-from employer.models import Jobs,CompanyProfile
+from employer.models import Jobs,CompanyProfile,Applications
 from employer.forms import SighnupForm,LoginForm
 # from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -182,4 +182,23 @@ class EmpEditProfileView(UpdateView):
     form_class = CompanyProfileForm
     template_name = "emp-editprofile.html"
     success_url = reverse_lazy('emp-profileview')
+    pk_url_kwarg = "id"
+
+
+
+class EmployeeListApplications(ListView):
+    model = Applications
+    context_object_name = "applications"
+    template_name = "emp-applist.html"
+
+    def get_queryset(self):
+        return Applications.objects.filter(job=self.kwargs.get("id")).exclude(status="cancelled")
+
+
+
+
+class EmployeeApplicationDetailView(DetailView):
+    model = Applications
+    template_name = "emp-appdetail.html"
+    context_object_name = "application"
     pk_url_kwarg = "id"
